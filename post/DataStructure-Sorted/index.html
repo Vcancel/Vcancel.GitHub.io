@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>数据结构 &gt;&gt; 排序算法 | Vcancel&#39;s Blog</title>
+<link rel="stylesheet" href="https://Vcancel.GitHub.io/styles/main.css">
+
+  <script src="https://Vcancel.GitHub.io/media/js/page.js"></script>
+
+    
+
+  <meta name="description" content="概述
+
+
+
+排序算法
+平均时间复杂度
+最好情况
+最坏情况
+空间复杂度
+排序方式
+稳定性
+
+
+
+
+冒泡排序
+O(n2^{2}2)
+O(n)
+O(n2^{2}2)
+O(1)
+内部排序
+稳定
+
+
+选择排序
+O(n2^{2}2)
+O(n2^{2}2...">
+  <script src="https://Vcancel.GitHub.io/media/js/prism.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+</head>
+<body>
+  <div class="antialiased">
+    <div class="body-width mx-auto px-6 md:px-8">
+      
+<div class="flex justify-between items-center mt-10">
+  <h1 class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-900 font-medium md:font-normal leading-none">
+    <div class="glitch-wrapper">
+      <div class="glitch" data-text="Vcancel&#39;s Blog">
+        <a href="https://Vcancel.GitHub.io">Vcancel&#39;s Blog</a>
+      </div>
+    </div>
+  </h1>
+  <div class="block lg:hidden" id="thumb-menu">
+    <button id="thumb-open" type="button" class="block">
+      <i class="icon icon-menu-close"></i>
+    </button>
+    <button id="thumb-close" type="button" class="hidden">
+      <i class="icon icon-menu-open"></i>
+    </button>
+  </div>
+</div>
+<div id="nav-list" class="lg:block hidden">
+  <div class="w-full block lg:flex lg:justify-between border-external-bottom lg:border-gray-400 mt-10 text-gray-700 lg:text-lg">
+    <div class="lg:flex -mb-px">
+      
+        
+          <div class="pb-4">
+            <a href="/" class="nav-link">
+              <i class="icon icon-home"></i> 
+              首页
+            </a>
+          </div>
+        
+      
+        
+          <div class="pb-4">
+            <a href="/archives" class="nav-link">
+              <i class="icon icon-archive"></i> 
+              归档
+            </a>
+          </div>
+        
+      
+        
+          <div class="pb-4">
+            <a href="/tags" class="nav-link">
+              <i class="icon icon-tags"></i> 
+              标签
+            </a>
+          </div>
+        
+      
+        
+          <div class="pb-4">
+            <a href="/post/about" class="nav-link">
+              <i class="icon icon-user"></i> 
+              关于
+            </a>
+          </div>
+        
+      
+        
+          <div class="pb-4">
+            <a href="/essays" class="nav-link">
+              <i class="icon icon-essay"></i> 
+              随笔
+            </a>
+          </div>
+        
+      
+      <div class="search-frame pb-4">
+        <i class="icon icon-search"></i>
+        <form id="search-form" action="https://Vcancel.GitHub.io/search/">
+          <input name="searchContent" type="text" placeholder="Search..." />
+        </form>
+      </div>
+    </div>
+    <div class="lg:flex">
+      <ul>
+        
+          
+            <li class="inline-block">
+              
+                <a href="https://github.com/Vcancel" class="block lg:mt-0 lg:ml-8 align-center hover:text-gray-900" target="_blank">
+                  <i class="icon icon-github"></i>
+                  <!-- GitHub -->
+                </a>
+              
+            </li>
+          
+        
+          
+            <li class="inline-block">
+              
+                <a href="https://twitter.com/Qimains" class="block lg:mt-0 lg:ml-8 align-center hover:text-gray-900" target="_blank">
+                  <i class="icon icon-twitter"></i>
+                  <!-- Twitter -->
+                </a>
+              
+            </li>
+          
+        
+          
+            <li class="inline-block">
+              
+                <a href="https://instagram.com/qimains" class="block lg:mt-0 lg:ml-8 align-center hover:text-gray-900" target="_blank">
+                  <i class="icon icon-instagram"></i>
+                  <!-- Instagram -->
+                </a>
+              
+            </li>
+          
+        
+          
+        
+          
+        
+          
+            <li class="inline-block">
+              
+                <a href="mailto:jiaqi.gao.dev@gmail.com" class="block lg:mt-0 lg:ml-8 align-center hover:text-gray-900" target="_blank">
+                  <i class="icon icon-email"></i>
+                  <!-- Email -->
+                </a>
+              
+            </li>
+          
+        
+      </ul>
+      <a href="https://Vcancel.GitHub.io/atom.xml" class="block mt-4 lg:mt-0 lg:ml-8 align-center hover:text-gray-900" target="_blank">
+        <i class="icon icon-rss"></i>
+        RSS
+      </a>
+    </div>
+  </div>
+</div>
+      <div class="mb-20 md:flex mt-10 lg:mt-6 md:border-internal md:border-gray-400 md:pt-2 lg:border-t-0 lg:pt-0">
+        <div class="w-full md:w-2/3 mt-6">
+          <h1 class="post-title text-3xl">数据结构 &gt;&gt; 排序算法</h1>
+          
+          <div class="mt-6 lg:mt-10 post-content">
+            <h2 id="概述">概述</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">排序算法</th>
+<th style="text-align:center">平均时间复杂度</th>
+<th style="text-align:center">最好情况</th>
+<th style="text-align:center">最坏情况</th>
+<th style="text-align:center">空间复杂度</th>
+<th style="text-align:center">排序方式</th>
+<th style="text-align:center">稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">冒泡排序</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内部排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">选择排序</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内部排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">插入排序</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内部排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">希尔排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlog<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>n)</td>
+<td style="text-align:center">O(nlog<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内部排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">归并排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">外部排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">快速排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(logn)</td>
+<td style="text-align:center">内部排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">堆排序</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(nlogn)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内部排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">计数排序</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(k)</td>
+<td style="text-align:center">外部排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">桶排序</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">外部排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">基数排序</td>
+<td style="text-align:center">O(n*k)</td>
+<td style="text-align:center">O(n*k)</td>
+<td style="text-align:center">O(n*k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">外部排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+</tbody>
+</table>
+<p><strong>稳定性</strong>：在原序列中，<code>r[i]=r[j]</code>，且<code>r[i]</code>在<code>r[j]</code>之前，而在排序后的序列中，<code>r[i]</code>仍在<code>r[j]</code>之前，则称这种排序算法是稳定的。<br>
+<strong>排序方式</strong>：</p>
+<ul>
+<li><strong>内部排序</strong>：指待排序列完全存放在内存中所进行的排序过程。</li>
+<li><strong>外部排序</strong>：指待排序记录存储在外存储器上，无法一次全部放入内存，期间需要内存与外存储器进行多次数据交换，最终完成的排序过程。</li>
+</ul>
+<h2 id="实现">实现</h2>
+<p>设待排序序列长度为<code>N</code></p>
+<h3 id="冒泡排序bubble-sort">冒泡排序｜Bubble Sort</h3>
+<h4 id="基础算法">基础算法</h4>
+<p><strong>思想</strong></p>
+<blockquote>
+<ol>
+<li>比较相邻两个元素，如果前面的元素大于后面的元素，就将这两个元素交换。</li>
+<li>对数组的第<code>0</code>个元素到<code>N-1</code>个元素进行一次遍历后，最大的一个元素就移动到数组第<code>N-1</code>个位置。</li>
+<li><code>N=N-1</code>，如果<code>N</code>不为<code>0</code>就重复前面二步，否则排序完成。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public static void bubbleSort(int[] arr) {
+    int i, j;
+    for (i = 0; i &lt; arr.length; i++) {
+        for (j = 1; j &lt; arr.length - i; j++) {
+            if (arr[j - 1] &gt; arr[j]) {
+                int temp = arr[j - 1];
+                arr[j - 1] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+</code></pre>
+<h4 id="优化算法">优化算法</h4>
+<p><strong>思想</strong></p>
+<blockquote>
+<p>基于基础算法，若有一次遍历中未发生数据交换，则排序已经完成。</p>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public static void bubbleSort(int[] arr) {
+    int j, k = arr.length;
+    boolean flag = true;
+    while (flag) {
+        flag = false;
+        for (j = 1; j &lt; k; j++) {
+            if (arr[j - 1] &gt; arr[j]) {
+                int temp = arr[j - 1];
+                arr[j - 1] = arr[j];
+                arr[j] = temp;
+                flag = true;
+            }
+        }
+        k--;
+    }
+}
+</code></pre>
+<h3 id="选择排序selection-sort">选择排序｜Selection Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<ol>
+<li>对数组进行一次遍历，找到最小元素，并与待排序序列首个元素交换。</li>
+<li><code>N=N-1</code>，若<code>N&gt;0</code>，重复第一步，若<code>N=0</code>，排序完成。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public static void selectionSort(int[] arr) {
+    for (int i = 0; i &lt; arr.length - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j &lt; arr.length; j++) {
+            if (arr[j] &lt; arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
+</code></pre>
+<h3 id="插入排序insertion-sort">插入排序｜Insertion Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<ol>
+<li>在待排序序列中取出一个元素，遍历已排序序列，将元素插入到合适位置。</li>
+<li><code>N=N-1</code>，若<code>N&gt;0</code>，重复第一步，若<code>N=0</code>，排序完成。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public static void insertionSort(int[] arr) {
+	int n = arr.length;
+	for (int i = 1; i &lt; n; i++) {
+		for (int j = i; j &gt; 0 &amp;&amp; arr[j] &lt; arr[j - 1]; j--) {
+			int temp = arr[j];
+			arr[j] = arr[j - 1];
+			arr[j - 1] = temp;
+		}
+	}
+}
+</code></pre>
+<h3 id="希尔排序shell-sort">希尔排序｜Shell Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<p>希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。</p>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public static void shellSort(int[] arr) {
+	int length = arr.length;
+	int temp;
+	for (int step = length / 2; step &gt;= 1; step /= 2) {
+		for (int i = step; i &lt; length; i++) {
+			temp = arr[i];
+			int j = i - step;
+			while (j &gt;= 0 &amp;&amp; arr[j] &gt; temp) {
+				arr[j + step] = arr[j];
+				j -= step;
+			}
+			arr[j + step] = temp;
+		}
+	}
+}
+</code></pre>
+<h3 id="归并排序marge-sort">归并排序｜Marge Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<p>分治法：</p>
+<ul>
+<li>分割：递归地把当前序列平均分割成两半。</li>
+<li>集成：在保持元素顺序的同时将上一步得到的子序列集成到一起（归并）。</li>
+</ul>
+</blockquote>
+<p><strong>实现</strong></p>
+<ul>
+<li>递归版</li>
+</ul>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+static void mergeSortRecursive(int[] arr, int[] result, int start, int end) {
+	if (start &gt;= end)
+		return;
+	int len = end - start, mid = (len &gt;&gt; 1) + start;
+	int start1 = start, end1 = mid;
+	int start2 = mid + 1, end2 = end;
+	mergeSortRecursive(arr, result, start1, end1);
+	mergeSortRecursive(arr, result, start2, end2);
+	int k = start;
+	while (start1 &lt;= end1 &amp;&amp; start2 &lt;= end2)
+		result[k++] = arr[start1] &lt; arr[start2] ? arr[start1++] : arr[start2++];
+	while (start1 &lt;= end1)
+		result[k++] = arr[start1++];
+	while (start2 &lt;= end2)
+		result[k++] = arr[start2++];
+	for (k = start; k &lt;= end; k++)
+		arr[k] = result[k];
+}
+public static void mergeSort(int[] arr) {
+	int len = arr.length;
+	int[] result = new int[len];
+	mergeSortRecursive(arr, result, 0, len - 1);
+}
+</code></pre>
+<ul>
+<li>迭代版</li>
+</ul>
+<pre><code class="language-Java">public static void mergeSort(int[] arr) {
+	int[] orderedArr = new int[arr.length];
+	for (int i = 2; i &lt; arr.length * 2; i *= 2) {
+		for (int j = 0; j &lt; (arr.length + i - 1) / i; j++) {
+			int left = i * j;
+			int mid = left + i / 2 &gt;= arr.length ? (arr.length - 1) : (left + i / 2);
+			int right = i * (j + 1) - 1 &gt;= arr.length ? (arr.length - 1) : (i * (j + 1) - 1);
+			int start = left, l = left, m = mid;
+			while (l &lt; mid &amp;&amp; m &lt;= right) {
+				if (arr[l] &lt; arr[m]) {
+					orderedArr[start++] = arr[l++];
+				} else {
+					orderedArr[start++] = arr[m++];
+				}
+			}
+			while (l &lt; mid)
+				orderedArr[start++] = arr[l++];
+			while (m &lt;= right)
+				orderedArr[start++] = arr[m++];
+			System.arraycopy(orderedArr, left, arr, left, right - left + 1);
+		}
+	}
+}
+</code></pre>
+<h3 id="快速排序quick-sort">快速排序｜Quick Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<p>分治法：</p>
+<ol>
+<li>挑选基准值：从数列中挑出一个元素，称为“基准”。</li>
+<li>分割：重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（与基准值相等的数可以到任何一边）。</li>
+<li>递归排序子序列：递归地将小于基准值元素的子序列和大于基准值元素的子序列排序。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ * @param low
+ * @param high
+ */
+static int partition(int[] arr, int low, int high) {
+	int pivot = arr[high];
+	int pointer = low;
+	for (int i = low; i &lt; high; i++) {
+		if (arr[i] &lt;= pivot) {
+			int temp = arr[i];
+			arr[i] = arr[pointer];
+			array[pointer] = temp;
+			pointer++;
+		}
+	}
+	int temp = arr[pointer];
+	arr[pointer] = arr[high];
+	arr[high] = temp;
+	return pointer;
+}
+
+public static void quickSort(int[] arr, int low, int high) {
+	if (low &lt; high) {
+		int position = partition(arr, low, high);
+		quickSort(arr, low, position - 1);
+		quickSort(arr, position + 1, high);
+	}
+}
+</code></pre>
+<h3 id="堆排序heap-sort">堆排序｜Heap Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<ol>
+<li>建立一个堆<code>H[0...n-1]</code>。</li>
+<li>把堆首（最大值）和堆尾互换。</li>
+<li>把堆的尺寸缩小<code>1</code>，把新的数组顶端数据调整到相应位置。</li>
+<li>重复步骤<code>2</code>，直到堆的尺寸为<code>1</code>。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public void heapSort(int[] arr) {
+	int len = arr.length - 1;
+	int beginIndex = (arr.length &gt;&gt; 1) - 1;
+	for (int i = beginIndex; i &gt;= 0; i--)
+		maxHeapify(i, len);
+	for (int i = len; i &gt; 0; i--) {
+		swap(0, i);
+		maxHeapify(0, i - 1);
+	}
+}
+private void swap(int i, int j) {
+	int temp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = temp;
+}
+private void maxHeapify(int index, int len) {
+	int li = (index &lt;&lt; 1) + 1;
+	int ri = li + 1;
+	int cMax = li;
+	if (li &gt; len) return;
+	if (ri &lt;= len &amp;&amp; arr[ri] &gt; arr[li])
+		cMax = ri;
+	if (arr[cMax] &gt; arr[index]) {
+		swap(cMax, index);
+		maxHeapify(cMax, len);
+	}
+}
+</code></pre>
+<h3 id="计数排序count-sort">计数排序｜Count Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<ol>
+<li>找出待排序数组中最大和最小的元素。</li>
+<li>统计数组中每个值为<code>i</code> 的元素出现的次数，存入计数数组<code>C</code>的第<code>i-minValue</code>项。</li>
+<li>对所有的计数累加。</li>
+<li>反向填充数组：将每个元素<code>i</code>放在新数组的第<code>C[i]</code>项，每放一个元素就将<code>C[i]</code>减去<code>1</code>。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ * @return b
+ */
+public static int[] countSort(int[] arr){
+	int b[] = new int[arr.length];
+	int max = arr[0], min = arr[0];
+	for(int i : arr){
+		if(i &gt; max){
+			max = i;
+		}
+		if(i &lt; min){
+			min = i;
+		}
+	}
+	int k = max - min + 1;
+	int c[] = new int[k];
+	for(int i = 0; i &lt; arr.length; ++i){
+		c[a[i] - min] += 1;
+	}
+	for(int i = 1; i &lt; c.length; ++i){
+		c[i] = c[i] + c[i - 1];
+	}
+	for(int i = arr.length - 1; i &gt;= 0; --i){
+		b[--c[arr[i] - min]] = arr[i];
+	}
+	return b;
+}
+</code></pre>
+<h3 id="桶排序bucket-sort">桶排序｜Bucket Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<ol>
+<li>设置一个定量的数组当作空桶。</li>
+<li>遍历序列，并把元素放到对应的桶去。</li>
+<li>对每一个非空桶进行排序。</li>
+<li>再将非空桶中元素放回原队列。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public void bucketSort(int[] arr) {
+	int max = arr[0], min = arr[0];
+	for (int a : arr) {
+		if (max &lt; a)
+			max = a;
+		if (min &gt; a)
+			min = a;
+	}
+	int bucketNum = max / 10 - min / 10 + 1;
+	List buckList = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+	for (int i = 1; i &lt;= bucketNum; i++) {
+		buckList.add(new ArrayList&lt;Integer&gt;());
+	}
+	for (int i = 0; i &lt; arr.length; i++) {
+		int index = indexFor(arr[i], min, 10);
+		((ArrayList&lt;Integer&gt;) buckList.get(index)).add(arr[i]);
+	}
+	ArrayList&lt;Integer&gt; bucket = null;
+	int index = 0;
+	for (int i = 0; i &lt; bucketNum; i++) {
+		bucket = (ArrayList&lt;Integer&gt;) buckList.get(i);
+		insertSort(bucket);
+		for (int k : bucket) {
+			arr[index++] = k;
+		}
+	}
+}
+
+private int indexFor(int a, int min, int step) {
+	return (a - min) / step;
+}
+
+private void insertSort(List&lt;Integer&gt; bucket) {
+	for (int i = 1; i &lt; bucket.size(); i++) {
+		int temp = bucket.get(i);
+		int j = i - 1;
+		for (; j &gt;= 0 &amp;&amp; bucket.get(j) &gt; temp; j--) {
+			bucket.set(j + 1, bucket.get(j));
+		}
+		bucket.set(j + 1, temp);
+	}
+}
+</code></pre>
+<h3 id="基数排序radix-sort">基数排序｜Radix Sort</h3>
+<p><strong>思想</strong></p>
+<blockquote>
+<ol>
+<li>将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。</li>
+<li>从最低位开始，依次进行一次排序。</li>
+<li>排序完成以后，数列就变成一个有序序列。</li>
+</ol>
+</blockquote>
+<p><strong>实现</strong></p>
+<pre><code class="language-Java">/**
+ * @param arr
+ */
+public static void radixSort(int[] arr) {
+	if (null == arr || 0 == arr.length) return;
+	int k = maxbit(arr);
+	int radix = 1;
+	for (int i = 0; i &lt; k; i++) {
+		countingSort(arr, radix);
+		radix *= 10;
+	}
+}
+
+private static int maxbit(int[] arr) {
+	int max = arr[0];
+	for (int i = 1; i &lt; arr.length; i++) max = max &lt; arr[i] ? arr[i] : max;
+	int d = 1;
+	while ((max = max / 10) &gt; 0) d++;
+	return d;
+}
+
+public static void countingSort(int[] arr, int radix) {
+	int[] counts = new int[10];
+	int len = arr.length;
+	int[] buffer = new int[len];
+	for (int i = 0; i &lt; len; i++) counts[(arr[i] / radix) % 10]++;
+	for (int i = 1; i &lt; counts.length; i++) counts[i] = counts[i] + counts[i - 1];
+	for (int i = len - 1; i &gt;= 0; i--) {
+		buffer[counts[(arr[i] / radix ) % 10] - 1] = arr[i];
+		counts[(arr[i] / radix) % 10] = counts[(arr[i] / radix) % 10] - 1;
+	}
+	for (int i = 0; i &lt; len; i++) arr[i] = buffer[i];
+}
+</code></pre>
+
+          </div>
+          
+        </div>
+        
+          <div class="w-full md:w-1/3">
+            <div class="mt-6 md:pl-8">
+              <h4 class="text-base font-thin text-gray-700 mb-2">
+                <i class="icon icon-release"></i>
+                发布时间
+              </h4>
+              <div class="text-lg mb-6">Aug 04 2020</div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">
+                <i class="icon icon-tag"></i>
+                标签
+              </h4>
+              <div class="mb-6">
+                
+                  <a href="https://Vcancel.GitHub.io/tag/Algorithm/" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2"># Algorith</a>
+                
+                  <a href="https://Vcancel.GitHub.io/tag/Java/" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2"># Java</a>
+                
+                  <a href="https://Vcancel.GitHub.io/tag/Data-Structure/" class="py-1 px-4 border-gray-300 border text-sm inline-block text-gray-700 hover:text-gray-900 rounded mr-2 mb-2"># DataStructure</a>
+                
+              </div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">
+                <i class="icon icon-words"></i>
+                字数
+              </h4>
+              <div class="text-lg mb-6">2376 Char</div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">
+                <i class="icon icon-read"></i>
+                阅读时间
+              </h4>
+              <div class="text-lg mb-6">12 min read</div>
+              <h4 class="text-base font-thin text-gray-700 mb-2">
+                <i class="icon icon-related"></i>
+                相关阅读
+              </h4>
+              <div class="border-internal border-gray-400">
+                
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+  
+
+
+  <div class="py-6 text-gray-700 text-sm">暂无相关文章</div>
+
+              </div>
+              
+  <h4 class="text-base font-thin text-gray-700 mb-2 mt-6">
+    <i class="icon icon-sponsor"></i>
+    赞赏
+  </h4>
+  <div class="post-sponsor text-gray-700">
+    <img class="post-sponsor-img w-32 h-32 md:w-40 md:h-40" src="https://Vcancel.GitHub.io/media/images/custom-weChatPayQR.png" alt="">
+    <div>
+      <i class="icon icon-wechat"></i>
+      微信支付
+    </div>
+  </div>
+
+
+            </div>
+          </div>
+        
+        
+      </div>
+      
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Vcancel
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://Vcancel.GitHub.io/post/DataStructure-Sorted/" title="数据结构 &gt;&gt; 排序算法">https://Vcancel.GitHub.io/post/DataStructure-Sorted/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      文章除特别声明外，均采用
+      <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">
+        <i class="icon icon-copyright"></i>
+        BY
+      </a>
+      许可协议
+    </li>
+  </ul>
+
+      
+        <div id="gitalk-container"></div>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'c8d24380995ffa0f0099',
+    clientSecret: '246af2b2d9b164ba61aa43c359654d00ad02bfa3',
+    repo: 'Vcancel.GitHub.io',
+    owner: 'Vcancel',
+    admin: ['Vcancel'],
+    id: (location.pathname).substring(0, 49), 
+    distractionFreeMode: false
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+      
+      <div class="footer border-gray-400 border-external-top pt-6 mt-6 sm:mt-8 md:mt-10 mb-20 text-gray-700 text-sm sm:text-base lg:text-lg">
+  © 2022 <a href="https://github.com/Vcancel" target="_blank">Vcancel</a> 
+</div>
+    </div>
+  </div>
+  <script>
+    Prism.highlightAll()
+  </script>
+</body>
+</html>
